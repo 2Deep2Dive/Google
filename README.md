@@ -1,4 +1,4 @@
 # google
-A test repo used or google course
+A test repo used for google course
 
 I am editing the README file. Adding some more details about the project description.

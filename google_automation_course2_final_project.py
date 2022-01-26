@@ -29,28 +29,28 @@ def list_to_csv(fileName, list):
 def get_results(logfile):
     error = {}
     per_user = {}
-    Pattern =  r"(.*)(ERROR|INFO): ([a-zA-Z ]*)(.*)\(([\w.]+)\)"
+    Pattern =  r"(.*)(ERROR|INFO) ([a-zA-Z ]*)(.*)\(([\w.]+)\)"
     with open(logfile) as file:
         for line in file:
                 result = re.search(Pattern, line)
-                if(result[2] == "ERROR"):
-                    if (result[3]) not in error:
-                        error[result[3]] = 1
+                if(result.group(2) =="ERROR"):
+                    if (result.group(3)) not in error:
+                        error[result.group(3)] = 1
                     else:
-                        error[result[3]] += 1
-                    if (result[5]) not in per_user:
-                        per_user[result[5]] = {}
-                    if (result[2]) not in per_user[result[5]]:
-                        per_user[result[5]][result[2]] = 1
+                        error[result.group(3)] += 1
+                    if (result.group(5)) not in per_user:
+                        per_user[result.group(5)] = {}
+                    if (result.group(2)) not in per_user[result.group(5)]:
+                        per_user[result.group(5)][result.group(2)] = 1
                     else:
-                        per_user[result[5]][result[2]] += 1
-                elif (result[2] == "INFO"):
-                    if (result[5] not in per_user):
-                        per_user[result[5]] = {}
-                    if (result[2]) not in per_user[result[5]]:
-                        per_user[result[5]][result[2]] = 1
+                        per_user[result.group(5)][result.group(2)] += 1
+                elif (result.group(2) == "INFO"):
+                    if (result.group(5) not in per_user):
+                        per_user[result.group(5)] = {}
+                    if (result.group(2)) not in per_user[result.group(5)]:
+                        per_user[result.group(5)][result.group(2)] = 1
                     else:
-                        per_user[result[5]][result[2]] += 1
+                        per_user[result.group(5)][result.group(2)] += 1
                 else:
                     continue
     file.close()
